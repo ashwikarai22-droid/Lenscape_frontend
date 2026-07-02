@@ -25,6 +25,29 @@ const ORIENTATIONS = [
 
 export default function SubmitPage() {
   const navigate = useNavigate()
+  
+  // Check if submissions are closed
+  const submissionsClosed = true;
+  if (submissionsClosed) {
+    return (
+      <div className="min-h-screen bg-exhibition-void text-exhibition-bone flex flex-col items-center justify-center p-6">
+        <div className="max-w-md w-full bg-[#0d0d0d] border border-exhibition-gold/20 p-10 text-center relative">
+          {['top-2 left-2','top-2 right-2','bottom-2 left-2','bottom-2 right-2'].map(p => (
+            <div key={p} className={`absolute ${p} w-1.5 h-1.5 bg-exhibition-gold/30 rounded-full`} />
+          ))}
+          <AlertTriangle className="w-12 h-12 text-exhibition-gold mx-auto mb-6" />
+          <h2 className="editorial-text text-3xl font-light mb-3">Submissions Closed</h2>
+          <p className="text-xs font-mono text-zinc-500 mb-8 leading-relaxed">We are currently in the voting phase. New submissions are no longer accepted.</p>
+          <Link to="/">
+            <button className="w-full py-3 bg-exhibition-gold text-exhibition-void font-mono text-xs uppercase font-bold tracking-widest hover:bg-white hover:text-black transition-colors">
+              Exhibition Hall
+            </button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   const token = getToken()
   const profileComplete = localStorage.getItem('lenscape_profile_complete') === 'true'
 
